@@ -1,0 +1,73 @@
+.div{
+    background-color: rgb(16, 194, 238);
+    border-radius: 20px;
+    color: black;
+    margin: auto;
+    width: 30vb;
+    border-radius: 1 rem;
+    position:relative;
+    height: fit-content;
+    font-family: bradley Hand;
+    text-align: center;
+    font-size:small;
+    font-style: normal;
+    font-weight: 100;
+   
+
+}
+
+
+.closeButton{
+    border: 0px;
+    background-color:greenyellow;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 15px;
+    cursor: pointer;
+    
+    right: 50%;
+    margin-block-start: 3%;
+
+    
+   
+    }
+
+.image{
+     width: 60%;
+     border-radius: 50%;
+     border-width:medium;
+     display: block;
+     box-shadow: 14px;
+     margin-block-start: 22%;
+     
+     margin-left: 20%;
+
+
+    }
+
+.name{
+    font-size: 0.4en;
+    position:absolute;
+    background-color: rgb(50, 59, 151);
+    color: azure;
+    width:100%;
+    text-align: center;
+    margin-block-start: 3%;
+
+
+}
+
+.imageContainer{
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 5px;
+    color: black;
+    
+}
+.atributos{
+    line-height: 120%;
+    border-bottom: chocolate;
+
+
+}

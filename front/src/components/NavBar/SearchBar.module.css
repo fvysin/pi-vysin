@@ -1,0 +1,39 @@
+.div{
+    border-radius: 12px;
+   margin-left: 50%;
+    height: 30px;
+   width: 40vh;
+
+   
+   display: flex;
+   justify-content: space-around;
+  
+
+}
+
+.button{
+    padding: 10 40px 10 25px;
+    height: 30px;
+    border-radius: 0.3rem;
+    background-color: blue
+}
+
+.input{
+    width: 70%;
+    height: 25px;
+    border-radius: 0.3rem;
+  
+    border: none;
+    cursor: pointer;
+  
+}
+.btn:hover{
+    width: 7vw;
+    height: 5vh;
+    transition: 0.4s;
+}
+
+
+
+  
+  
