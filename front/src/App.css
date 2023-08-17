@@ -2,10 +2,11 @@
    text-align: center;
    display: flex;
    background-image: url('../src/imagen/1375401-rick-and-morty-tv-series-portal-gun-4k-pc-wallpaper.jpg');
-
    background-repeat: no-repeat;
-
    background-size:cover;
+   background-position: fixed;
+   
+
    flex-direction: column; 
    
    width: 100%;

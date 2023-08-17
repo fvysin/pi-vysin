@@ -1,35 +1,29 @@
 /* eslint-disable no-case-declarations */
+import { ADD_FAV, FILTER, REMOVE_FAV, ORDER } from "./actiontypes";
+
 const initialState = {
   myFavorites: [],
   allCharactersFav: []
 };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "ADD_FAV":
-      return {
-        ...state,
-        myFavorites: [...state.allCharactersFav, action.payload],
-        allCharactersFav: [...state.allCharactersFav, action.payload]
-      };
-    case "REMOVE_FAV":
-      return {
-        ...state,
-        myFavorites: state.myFavorites.filter(
-          (fav) => fav.id !== Number(action.payload)
-        ),
-      };
-    case "FILTER":
+const reducer = (state = initialState, {type, payload}) => {
+  switch (type) {
+    case ADD_FAV:
+      return { ...state, 
+        myFavorites: payload, allCharacters: payload };
+      case REMOVE_FAV:
+        return { ...state, myFavorites: payload };
+    case FILTER:
       const allCharactersFiltered = state.allCharactersFav.filter((character) => character.gender === action.payload)
       return {
         ...state,
         myFavorites: allCharactersFiltered
       }
-      case "ODER":
+      case ORDER:
         const allCharactersFavCopy = [state.allCharactersFav]
         return {
           ...state,
-          myFavorites: action.payload === "A" 
+          myFavorites: payload === "A" 
           ? allCharactersFavCopy.sort((a,b)=> a.id - b.id)
           : allCharactersFavCopy.sort((a,b)=> b.id - a.id)
         }

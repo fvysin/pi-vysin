@@ -15,52 +15,74 @@ import './App.css';
 
 
 const URL_BASE = "http://localhost:3001/rickandmorty/character";
+const URL = 'http://localhost:3001/rickandmorty/login/';
 
-const EMAIL= "florvysin@gmail.com";
-const PASSWORD= "12345F";
+
 
 function App() {
+ 
+      
+      
+      
+      
+      const [characters, setCharacters] = useState([]);
+      
 
 
-   const [characters, setCharacters] = useState([]);
-   
-   const onSearch = (id) =>{
-      axios(`${URL_BASE}/${id}`).then(({ data }) => {
-         if (data.name) {
-            setCharacters((oldChars) => [...oldChars, data]);
-         } else {
-            window.alert('¡No hay personajes con este ID!');
+      const onSearch = async (id) =>{
+         try {
+            
+          const {data} = await axios(`${URL_BASE}/${id}`)
+       
+            if (data.name) {
+                  setCharacters((oldChars) => [...oldChars, data]);
+            }
+         
+         } catch (error) {
+            return alert('¡No hay personajes con este ID!');
+               }
+         
+            }
+
+      
+      const onClose = (id)=>{
+         setCharacters(
+            characters.filter(char => {
+               return char.id !== Number(id)
+            })
+            )
+         };
+         
+         const {pathname} = useLocation();
+         
+         const navigate = useNavigate();
+         const [access, setAccess] = useState(false)
+         
+       
+         async function login(userData) {
+            try {
+               
+               const { email, password } = userData;
+               const {data} = await axios(URL + `?email= ${email} & password=${password}`)
+               const { access } = data;
+               
+               setAccess(data);
+               access && navigate('/home');
+               
+               } catch (error) {
+                  console.log(error.message)
+               }
+       
          }
-      });
-   };
-   
-   const onClose = (id)=>{
-      setCharacters(
-         characters.filter(char => {
-            return char.id !== Number(id)
-         })
-      )
-   };
-   
-   const {pathname} = useLocation();
-
-   const navigate = useNavigate();
-   const [access, setAccess] = useState(false)
-   
-  
-   function login(userData){
-      if (userData.password === PASSWORD && userData.email === EMAIL) {
-         setAccess(true);
-         navigate('/home');
-      }
-   }
-   useEffect(() => {
-         !access && navigate('/');
-      }, [access, navigate]);
-
-  
-   return (
-      <div className ='App'>
+         
+         
+         useEffect(() => {
+            !access && navigate('/');
+         }, [access, navigate]);
+         
+         
+         return (
+            <div className ='App'>
          
         {pathname !== '/' && <NavBar onSearch ={onSearch} />}
          <Routes>
@@ -68,10 +90,12 @@ function App() {
             <Route path= "/about" element= {<About/>} />
             <Route path= "/detail/:id" element= {<Detail/>}/>
             <Route path= "/" element= {<Form login= {login} />} />
+         
             <Route path= "/favorites" element= {<Favorites />}/>
          </Routes>
       
       </div>
+     
    )
 }
 
