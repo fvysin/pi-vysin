@@ -1,11 +1,9 @@
-// eslint-disable-next-line react-refresh/only-export-components
 /* eslint-disable react/prop-types */
 import {connect} from 'react-redux';
 import Card from './Card/Card';
-import { filterCards, orderCards } from '../Redux/actions';
+import { filterCards,orderCards } from "../Redux/actions.js";
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import styles from './Favorites.module.css';
 
 const Favorites = ({myFavorites})=>{
     const dispatch = useDispatch();
@@ -36,10 +34,9 @@ const Favorites = ({myFavorites})=>{
 
             <h1>Mis favoritos!</h1>
             {
-                myFavorites.length&& 
-                myFavorites.map(({id, name,status, species,origin,image,gender, onClose})=>{
+                myFavorites.legth && myFavorites.map(({id, name,status, species,origin,image,gender, onClose})=>{
                     return (
-                        <Card classname={styles.div}
+                        <Card
                         key={id}
                         id={id}
                         name= {name}
@@ -64,4 +61,4 @@ const mapStateToProps = (state)=>{
 };
 
 
- export default connect (mapStateToProps, null)(Favorites)
+ export default connect(mapStateToProps, null)(Favorites)

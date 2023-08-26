@@ -15,35 +15,41 @@ import './App.css';
 
 
 const URL_BASE = "http://localhost:3001/rickandmorty/character";
-const URL = 'http://localhost:3001/rickandmorty/login/';
 
 
 
 function App() {
  
-      
-      
-      
-      
       const [characters, setCharacters] = useState([]);
       
 
 
-      const onSearch = async (id) =>{
-         try {
+      // const onSearch = async (id) =>{
+      //    try {
             
-          const {data} = await axios(`${URL_BASE}/${id}`)
+      //     const {data} = await axios(`${URL_BASE}/${id}`)
        
+      //       if (data.name) {
+      //             setCharacters((oldChars) => [...oldChars, data]);
+      //       }
+         
+      //    } catch (error) {
+      //       return alert('¡No hay personajes con este ID!');
+      //          }
+         
+      //       }
+      const onSearch = async (id) => {
+         try {
+            const { data } = await axios.get(`${URL_BASE}/${id}`)
             if (data.name) {
-                  setCharacters((oldChars) => [...oldChars, data]);
+               setCharacters((oldChars) => [...oldChars, data]);
+            } else {
+               window.alert('¡No hay personajes con este ID!');
             }
-         
          } catch (error) {
-            return alert('¡No hay personajes con este ID!');
-               }
-         
-            }
-
+            console.log(error.message)
+         }
+      };
       
       const onClose = (id)=>{
          setCharacters(
@@ -58,22 +64,18 @@ function App() {
          const navigate = useNavigate();
          const [access, setAccess] = useState(false)
          
-       
-         async function login(userData) {
+         const login = async (userData) => {
             try {
-               
                const { email, password } = userData;
-               const {data} = await axios(URL + `?email= ${email} & password=${password}`)
+               const URL = 'http://localhost:3001/rickandmorty/login/';
+               const { data } = await axios(URL + `?email=${email}&password=${password}`)
                const { access } = data;
-               
-               setAccess(data);
+               setAccess(access);
                access && navigate('/home');
-               
-               } catch (error) {
-                  console.log(error.message)
-               }
-       
-         }
+            } catch (error) {
+               console.log(error.message)
+            }
+         };
          
          
          useEffect(() => {

@@ -102,3 +102,11 @@ export const addFav =  (character) => {
 //        console.log(error.message);
 //    }
 // };
+
+export const filterCards = (gender) => {
+   return { type: FILTER, payload: gender }
+};
+
+export const orderCards = (order) => {
+   return { type: ORDER, payload: order }
+};

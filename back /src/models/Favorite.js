@@ -1,39 +1,38 @@
-const { DataTypes, INTEGER } = require('sequelize');
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-   sequelize.define('Favorite', { 
-   id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true
+   sequelize.define('Favorite', {
+      id: {
+         type: DataTypes.INTEGER,
+         allowNull: false,
+         primaryKey: true,
+         autoIncrement: true
       },
-   name: {
-    allowNull: false,
-    type: DataTypes.STRING,
-    primaryKey: true
+      name: {
+         type: DataTypes.STRING,
+         allowNull: false
       },
-   status: {
-    dataType: Enum (Alive - Dead - unknown),
-    allowNull: false  
+      status: {
+         type: DataTypes.ENUM('Alive', 'Dead', 'unknown'),
+         allowNull: false
       },
-   species: {
-    type: DataTypes.STRING,
-    allowNull: false
-       
+      species: {
+         type: DataTypes.STRING,
+         allowNull: false
       },
       gender: {
-        dataType: Enum (Female - Male - Genderless - unknown)
+         type: DataTypes.ENUM("Male", "Female", 'Genderless', 'unknown'),
+         allowNull: false
       },
       origin: {
-        type: DataTypes.STRING,
-        allowNull: false
+         type: DataTypes.STRING,
+         allowNull: false
       },
       image: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-    },{ timestamps: false }
-    )};
-  
+         type :DataTypes.STRING,
+         allowNull: false
+      }
 
+   },
+      { timestamps: false });
+};

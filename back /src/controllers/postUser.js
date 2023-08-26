@@ -1,13 +1,17 @@
-const User = require ('../DB_connection')
+const { User } = require('../DB_connection.js');
 
-const postUser=async(req, res)=>{
-     try {
-        res.status(400).send("Faltan datos")
-     } catch (error) {
-        res.status(500).send(error.message)
-     }
+module.exports = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        
+        if (!email || !password) return res.status(401).send("Faltan datos");
 
+        const user = await User.findOrCreate({
+            where: { email, password }
+        });
 
-}
-
-module.exports=postUser
+        return res.status(200).json(user)
+    } catch (error) {
+        return res.status(500).json(error.message)
+    }
+};

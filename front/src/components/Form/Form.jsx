@@ -1,5 +1,5 @@
 import { useState } from "react"
-import validation from "./Validation"
+import validation from "../Validation"
 import styles from './Form.module.css'
 
 // eslint-disable-next-line react/prop-types
